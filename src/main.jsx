@@ -8,6 +8,8 @@ import App from './App.jsx';
 import './index.css';
 import Home from './pages/Home/Home.jsx';
 import AuthProvider from './providers/AuthProvider.jsx';
+import Blogs from './pages/Blogs/Blogs.jsx';
+import AllToys from './pages/AllToys/AllToys.jsx';
 
 const router = createBrowserRouter([
   {
@@ -18,14 +20,24 @@ const router = createBrowserRouter([
         path: '/',
         element: <Home />
       },
+      {
+        path: 'all-toys',
+        element: <AllToys />
+      },
+      {
+        path: 'blogs',
+        element: <Blogs />
+      }
     ]
   }
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <AuthProvider>
-      <RouterProvider router={router} />
-    </AuthProvider>
-  </React.StrictMode>
+  <div className='max-w-7xl mx-auto'>
+    <React.StrictMode>
+      <AuthProvider>
+        <RouterProvider router={router} />
+      </AuthProvider>
+    </React.StrictMode>
+  </div>
 );

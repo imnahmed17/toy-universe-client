@@ -10,6 +10,7 @@ import Home from './pages/Home/Home.jsx';
 import AuthProvider from './providers/AuthProvider.jsx';
 import Blogs from './pages/Blogs/Blogs.jsx';
 import AllToys from './pages/AllToys/AllToys.jsx';
+import Login from './pages/Login/Login.jsx';
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
       {
         path: 'blogs',
         element: <Blogs />
+      },
+      {
+        path: 'login',
+        element: <Login />
       }
     ]
   }

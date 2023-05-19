@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../providers/AuthProvider';
 
 const SignUp = () => {
-    const { createUser } = useContext(AuthContext);
+    const { createUser, updateUserData } = useContext(AuthContext);
     const [show, setShow] = useState(false);
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
@@ -35,6 +35,15 @@ const SignUp = () => {
                 console.log('created user', user);
                 setError('');
                 setSuccess('User has been created successfully');
+                // set user name and photo
+                updateUserData(result.user, name, photo)
+                    .then(() => {
+                        console.log('User name and photo updated');
+                    })
+                    .catch(error => {
+                        setError(error.message);
+                    })
+                form.reset();
             })
             .catch(error => {
                 setError(error.message);

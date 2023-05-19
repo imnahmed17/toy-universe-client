@@ -1,11 +1,30 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../providers/AuthProvider';
 
 const Login = () => {
+    const { signIn } = useContext(AuthContext);
     const [show, setShow] = useState(false);
     const [error, setError] = useState('');
 
-    const handleLogin = event => {};
+    const handleLogin = event => {
+        event.preventDefault();
+        const form = event.target;
+        const email = form.email.value;
+        const password = form.password.value;
+        console.log(email, password);
+
+        signIn(email, password)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                setError('');
+                form.reset();
+            })
+            .catch(error => {
+                setError(error.message);
+            });
+    };
 
     return (
         <div className="mt-20 hero">

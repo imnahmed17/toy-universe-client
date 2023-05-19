@@ -1,9 +1,10 @@
 import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../providers/AuthProvider';
+import { FcGoogle } from 'react-icons/fc';
 
 const Login = () => {
-    const { signIn } = useContext(AuthContext);
+    const { signIn, googleSignIn } = useContext(AuthContext);
     const [show, setShow] = useState(false);
     const [error, setError] = useState('');
 
@@ -24,6 +25,19 @@ const Login = () => {
             .catch(error => {
                 setError(error.message);
             });
+    };
+
+    const handleGoogleSignIn = () => {
+        googleSignIn()
+            .then(result => {
+                const loggedUser = result.user;
+                console.log(loggedUser);
+                navigate(from, { replace: true });
+            })
+            .catch(error => {
+                // console.log(error.message);
+                setError(error.message);
+            })
     };
 
     return (
@@ -57,9 +71,13 @@ const Login = () => {
                                 <input className="btn btn-primary" type="submit" value="Login" />
                             </div>
                         </form>
-                        <p> 
-                            New to Toy Universe? <Link className="link link-primary" to="/signup">Sign Up</Link>
-                        </p>
+                        <p>New to Toy Universe? <Link className="link link-primary" to="/signup">Sign Up</Link></p>
+                        <div className="divider">OR</div>
+                        <div className="text-center">
+                            <button className="btn btn-circle btn-outline" onClick={handleGoogleSignIn}>
+                                <FcGoogle size={30} />
+                            </button>
+                        </div>
                         <p className="text-sm text-center text-error">{error}</p>
                     </div>
                 </div>

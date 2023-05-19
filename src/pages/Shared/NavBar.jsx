@@ -76,7 +76,7 @@ const NavBar = () => {
                 {
                     user && <div className="dropdown dropdown-end">
                         <label tabIndex={0} className="avatar flex items-center">
-                            <div className="w-12 rounded-full md:mr-3">
+                            <div className="w-12 rounded-full md:mr-3 hover:cursor-pointer">
                                 <img src={user.photoURL} title={user.displayName} />
                             </div>
                         </label>

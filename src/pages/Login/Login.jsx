@@ -1,12 +1,18 @@
-import { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useContext, useRef, useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../providers/AuthProvider';
 import { FcGoogle } from 'react-icons/fc';
 
 const Login = () => {
-    const { signIn, googleSignIn } = useContext(AuthContext);
+    const { signIn, resetPassword, googleSignIn } = useContext(AuthContext);
     const [show, setShow] = useState(false);
     const [error, setError] = useState('');
+    const emailRef = useRef();
+    const navigate = useNavigate();
+    const location = useLocation();
+    const saveAddress = localStorage.getItem('address') || '/';
+    const from = location.state?.from?.pathname || saveAddress;
+    localStorage.setItem('address', from);
 
     const handleLogin = event => {
         event.preventDefault();
@@ -15,27 +21,28 @@ const Login = () => {
         const password = form.password.value;
         console.log(email, password);
 
-        const handleForgotPassword = () => {
-            const email = emailRef.current.value;
-            if (!email) {
-                alert('Please provide your email address');
-                return;
-            }
-            resetPassword(email)
-                .then(() => {
-                    alert('Please check your email');
-                })
-                .catch(error => {
-                    setError(error.message);
-                });
-        };
-
         signIn(email, password)
             .then(result => {
                 const user = result.user;
                 console.log(user);
                 setError('');
                 form.reset();
+                navigate(from, { replace: true });
+            })
+            .catch(error => {
+                setError(error.message);
+            });
+    };
+
+    const handleForgotPassword = () => {
+        const email = emailRef.current.value;
+        if (!email) {
+            alert('Please provide your email address');
+            return;
+        }
+        resetPassword(email)
+            .then(() => {
+                alert('Please check your email');
             })
             .catch(error => {
                 setError(error.message);
@@ -45,8 +52,8 @@ const Login = () => {
     const handleGoogleSignIn = () => {
         googleSignIn()
             .then(result => {
-                const loggedUser = result.user;
-                console.log(loggedUser);
+                console.log(result.user);
+                setError('');
                 navigate(from, { replace: true });
             })
             .catch(error => {
@@ -66,7 +73,7 @@ const Login = () => {
                                 <label className="label">
                                     <span className="label-text">Email</span>
                                 </label>
-                                <input type="email" name="email" placeholder="example@gmail.com" className="input input-bordered" required />
+                                <input type="email" name="email" ref={emailRef} placeholder="example@gmail.com" className="input input-bordered" required />
                             </div>
                             <div className="form-control">
                                 <label className="label">
@@ -79,7 +86,9 @@ const Login = () => {
                                             show ? <span>Hide Password</span>: <span>Show Password</span>
                                         }
                                     </Link>
-                                    <Link className="label-text-alt link link-primary">Forgot password?</Link>
+                                    <Link className="label-text-alt link link-primary" onClick={handleForgotPassword}>
+                                        Forgot password?
+                                    </Link>
                                 </div>
                             </div>
                             <div className="form-control mt-5">

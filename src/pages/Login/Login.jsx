@@ -15,6 +15,21 @@ const Login = () => {
         const password = form.password.value;
         console.log(email, password);
 
+        const handleForgotPassword = () => {
+            const email = emailRef.current.value;
+            if (!email) {
+                alert('Please provide your email address');
+                return;
+            }
+            resetPassword(email)
+                .then(() => {
+                    alert('Please check your email');
+                })
+                .catch(error => {
+                    setError(error.message);
+                });
+        };
+
         signIn(email, password)
             .then(result => {
                 const user = result.user;

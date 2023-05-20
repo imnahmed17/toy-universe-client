@@ -12,11 +12,13 @@ import Blogs from './pages/Blogs/Blogs.jsx';
 import AllToys from './pages/AllToys/AllToys.jsx';
 import Login from './pages/Login/Login.jsx';
 import SignUp from './pages/SignUp/SignUp.jsx';
+import ErrorPage from './pages/ErrorPage/ErrorPage.jsx';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: '/',

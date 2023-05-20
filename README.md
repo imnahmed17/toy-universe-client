@@ -8,6 +8,8 @@ CSS Plugin -> [daisyui](https://daisyui.com/docs/install)
 
 Icon -> [react-icons](https://react-icons.github.io/react-icons)
 
+Image Slider -> [react-slick](https://www.npmjs.com/package/react-slick)
+
 Lottie Animation -> [LottieFiles](https://lottiefiles.com/featured)
 
 Lottie NPM Package -> [lottie-react](https://www.npmjs.com/package/lottie-react)

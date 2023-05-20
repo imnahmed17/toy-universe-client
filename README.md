@@ -16,4 +16,6 @@ Lottie NPM Package -> [lottie-react](https://www.npmjs.com/package/lottie-react)
 
 Alert -> [sweetalert2](https://sweetalert2.github.io/#download)
 
+Tabs -> [react-tabs](https://github.com/reactjs/react-tabs)
+
 Rating -> [react-rating](https://github.com/smastrom/react-rating)

@@ -9,3 +9,19 @@
 .default {
     @apply font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-blue-400 hover:bg-base-200
 }
+
+.slick-slide { 
+    padding:20px;
+}
+
+.slick-slide.slick-center img {
+    transform: scale(1.2);
+}
+
+.slick-dots li.slick-active {
+    transform: scale(1.7);
+}
+
+.slick-arrow {
+    filter: invert(1);
+}

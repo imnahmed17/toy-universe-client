@@ -9,9 +9,9 @@ const ToyRow = ({ toy, index }) => {
             <th>{index+1}</th>
             <td>{sellerName}</td>
             <td>{toyName}</td>
-            <td>{subCategory}</td>
+            <td className="text-center">{subCategory}</td>
             <td>${price}</td>
-            <td>{quantity}</td>
+            <td className="text-center">{quantity}</td>
             <td>
                 <Link to={`/toy/${_id}`}>
                     <button className="btn btn-active btn-ghost">View Details</button>

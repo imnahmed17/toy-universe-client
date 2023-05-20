@@ -8,6 +8,9 @@ const AllToys = () => {
         event.preventDefault();
         const form = event.target;
         const toyName = form.toyName.value;
+        fetch(`http://localhost:5000/toys?toyName=${toyName}`)
+            .then((res) => res.json())
+            .then((data) => setToys(data));
     }; 
 
     useEffect(() => {

@@ -6,7 +6,39 @@ const AddAToy = () => {
     const { user } = useContext(AuthContext);
 
     const handleAddAToy = (event) => {
-        
+        event.preventDefault();
+        const form = event.target;
+        const sellerName = user?.displayName;
+        const email = user?.email;
+        const toyName = form.toyName.value;
+        const photo = form.photo.value;
+        const subCategory = form.subCategory.value;
+        const quantity = form.quantity.value;
+        const price = form.price.value;
+        const rating = form.rating.value;
+        const description = form.description.value;
+        const toy = { sellerName, email, toyName, photo, subCategory, quantity, price, rating, description };
+        console.log(toy);
+
+        fetch("http://localhost:5000/toys", {
+            method: "POST",
+            headers: {
+                "content-type": "application/json",
+            },
+            body: JSON.stringify(toy)
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                console.log(data);
+                if (data.insertedId) {
+                    Swal.fire({
+                        title: "Success!",
+                        text: "Toy Added Successfully",
+                        icon: "success",
+                        confirmButtonText: "OK"
+                    });
+                }
+            });
     };
 
     return (

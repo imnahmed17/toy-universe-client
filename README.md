@@ -8,6 +8,10 @@ CSS Plugin -> [daisyui](https://daisyui.com/docs/install)
 
 Icon -> [react-icons](https://react-icons.github.io/react-icons)
 
+Lottie Animation -> [LottieFiles](https://lottiefiles.com/featured)
+
+Lottie NPM Package -> [lottie-react](https://www.npmjs.com/package/lottie-react)
+
 Alert -> [sweetalert2](https://sweetalert2.github.io/#download)
 
 Rating -> [react-rating](https://github.com/smastrom/react-rating)

@@ -10,7 +10,7 @@ const Login = () => {
     const emailRef = useRef();
     const navigate = useNavigate();
     const location = useLocation();
-    const saveAddress = localStorage.getItem('address') || '/';
+    const saveAddress = localStorage.getItem('address') || '/my-toys';
     const from = location.state?.from?.pathname || saveAddress;
     localStorage.setItem('address', from);
 

@@ -37,8 +37,12 @@ const PhotoSlider = () => {
     };
 
     return (
-        <div className="mt-20 px-5">
-            <Slider {...settings} className="">
+        <div className="mt-10 px-5">
+            <div className="text-center">
+                <h3 className="text-3xl font-semibold text-[#800080]">Top 8</h3>
+                <h2 className="text-5xl font-semibold drop-shadow-lg">TRENDING NOW</h2>
+            </div>
+            <Slider {...settings} className="mt-12">
                 <div>
                     <img src={img7} alt="" />
                 </div>

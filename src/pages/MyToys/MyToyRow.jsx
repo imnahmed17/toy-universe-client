@@ -1,6 +1,6 @@
 // import React from 'react';
 
-const MyToyRow = ({ toy, handleDelete }) => {
+const MyToyRow = ({ toy, handleDelete, setUniqueId }) => {
     const { _id, photo, toyName, subCategory, price, quantity, description } = toy;
 
     return (
@@ -23,7 +23,7 @@ const MyToyRow = ({ toy, handleDelete }) => {
             <td className="text-center">{quantity}</td>
             <td>{description.substring(0, 40)}...</td>
             <td>
-                <button className="btn btn-sm btn-active btn-ghost">Update</button>
+                <label htmlFor="my-modal-3" onClick={() => setUniqueId(_id)} className="btn btn-sm btn-active btn-ghost normal-case">Wanna Change?</label>
             </td>
         </tr>
     );

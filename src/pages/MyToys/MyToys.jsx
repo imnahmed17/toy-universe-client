@@ -2,17 +2,28 @@ import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
 import Swal from "sweetalert2";
 import MyToyRow from './MyToyRow';
+import UpdateModal from './UpdateModal';
 
 const MyToys = () => {
     const { user } = useContext(AuthContext);
     const [toys, setToys] = useState([]);
+    const [singleToy, setSingleToy] = useState({});
+    const [uniqueId, setUniqueId] = useState(null);
 
     const url = `http://localhost:5000/toys?email=${user?.email}`;
     useEffect(() => {
         fetch(url)
             .then((res) => res.json())
             .then((data) => setToys(data));
-    }, [url]);
+    }, [url, toys]);
+
+    useEffect(() => {
+        if(uniqueId != null) {
+            fetch(`http://localhost:5000/toys/${uniqueId}`)
+                .then((res) => res.json())
+                .then((data) => setSingleToy(data));
+        }
+    }, [uniqueId]);
 
     const handleDelete = (id) => {
         Swal.fire({
@@ -56,6 +67,33 @@ const MyToys = () => {
         });
     };
 
+    const handleUpdateToy = (updatedToy, id) => {
+        fetch(`http://localhost:5000/toys/${id}`, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(updatedToy)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.modifiedCount > 0) {
+                    const remaining = toys.filter(toy => toy._id !== id);
+                    const updated = toys.find(toy => toy._id === id);
+                    const newToys = [updated, ...remaining];
+                    setToys(newToys);
+
+                    Swal.fire({
+                        title: 'Success!',
+                        text: 'Toy Updated Successfully',
+                        icon: 'success',
+                        confirmButtonText: 'OK'
+                    });
+                }
+            });
+    };
+
     return (
         <div className="mt-10">
             <div className="overflow-x-auto w-full">
@@ -79,11 +117,13 @@ const MyToys = () => {
                                 key={toy._id}
                                 toy={toy} 
                                 handleDelete={handleDelete}
+                                setUniqueId={setUniqueId}
                             />)
                         }
                     </tbody>
                 </table>
             </div>
+            <UpdateModal singleToy={singleToy} handleUpdateToy={handleUpdateToy} />
         </div>
     );
 };

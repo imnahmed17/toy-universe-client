@@ -96,11 +96,11 @@ const AddAToy = () => {
                     </div>
                 </div>
                 <div className="form-control">
-                        <label className="label">
-                            <span className="label-text">Detail Description</span>
-                        </label>
-                        <textarea name="description" className="textarea textarea-bordered h-24" placeholder="toy description" required></textarea>
-                    </div>
+                    <label className="label">
+                        <span className="label-text">Detail Description</span>
+                    </label>
+                    <textarea name="description" className="textarea textarea-bordered h-24" placeholder="toy description" required></textarea>
+                </div>
                 <div className="form-control mt-6">
                     <input className="btn btn-primary btn-block" type="submit" value="Add Toy" />
                 </div>

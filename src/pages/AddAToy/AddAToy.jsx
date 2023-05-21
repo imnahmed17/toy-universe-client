@@ -1,9 +1,11 @@
 import { useContext } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
 import Swal from "sweetalert2";
+import useTitle from '../../hooks/useTitle';
 
 const AddAToy = () => {
     const { user } = useContext(AuthContext);
+    useTitle("Add A Toy");
 
     const handleAddAToy = (event) => {
         event.preventDefault();
@@ -14,13 +16,13 @@ const AddAToy = () => {
         const photo = form.photo.value;
         const subCategory = form.subCategory.value;
         const quantity = form.quantity.value;
-        const price = form.price.value;
+        const price = parseInt(form.price.value);
         const rating = form.rating.value;
         const description = form.description.value;
         const toy = { sellerName, email, toyName, photo, subCategory, quantity, price, rating, description };
         console.log(toy);
 
-        fetch("http://localhost:5000/toys", {
+        fetch("https://toy-universe-server-lake.vercel.app/toys", {
             method: "POST",
             headers: {
                 "content-type": "application/json",

@@ -1,22 +1,25 @@
 import { useEffect, useState } from 'react';
 import ToyRow from './ToyRow';
+import useTitle from '../../hooks/useTitle';
 
 const AllToys = () => {
     const [toys, setToys] = useState([]);
+    useTitle("All Toys");
 
     const handleSearch = (event) => {
         event.preventDefault();
         const form = event.target;
         const toyName = form.toyName.value;
-        fetch(`http://localhost:5000/toys?toyName=${toyName}`)
-            .then((res) => res.json())
-            .then((data) => setToys(data));
+        
+        fetch(`https://toy-universe-server-lake.vercel.app/toys?toyName=${toyName}`)
+            .then(res => res.json())
+            .then(data => setToys(data));
     }; 
 
     useEffect(() => {
-        fetch("http://localhost:5000/toys")
-            .then((res) => res.json())
-            .then((data) => setToys(data));
+        fetch("https://toy-universe-server-lake.vercel.app/toys")
+            .then(res => res.json())
+            .then(data => setToys(data));
     }, []);
 
     return (
@@ -39,6 +42,7 @@ const AllToys = () => {
                             <th className="text-center">Image</th>
                             <th>Toy Name</th>
                             <th>Sub Category</th>
+                            <th className="text-center">Rating</th>
                             <th>Price</th>
                             <th>Available Quantity</th>
                             <th></th>

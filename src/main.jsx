@@ -16,6 +16,7 @@ import ErrorPage from './pages/ErrorPage/ErrorPage.jsx';
 import PrivateRoute from './PrivateRoute/PrivateRoute.jsx';
 import AddAToy from './pages/AddAToy/AddAToy.jsx';
 import MyToys from './pages/MyToys/MyToys.jsx';
+import ToyDetails from './pages/ToyDetails/ToyDetails.jsx';
 
 const router = createBrowserRouter([
   {
@@ -38,6 +39,11 @@ const router = createBrowserRouter([
       {
         path: 'add-a-toy',
         element: <PrivateRoute><AddAToy /></PrivateRoute>
+      },
+      {
+        path: 'toy/:id',
+        element: <PrivateRoute><ToyDetails /></PrivateRoute>,
+        loader: ({ params }) => fetch(`https://toy-universe-server-lake.vercel.app/toys/${params.id}`)
       },
       {
         path: 'blogs',

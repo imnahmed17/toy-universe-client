@@ -1,5 +1,3 @@
-// import Swal from "sweetalert2";
-
 const UpdateModal = ({ singleToy, handleUpdateToy }) => {
     const { _id, toyName, quantity, price, description } = singleToy;
 
@@ -7,31 +5,11 @@ const UpdateModal = ({ singleToy, handleUpdateToy }) => {
         event.preventDefault();
         const form = event.target;
         const quantity = form.quantity.value;
-        const price = form.price.value;
+        const price = parseInt(form.price.value);
         const description = form.description.value;
         const updatedToy = { quantity, price, description };
         console.log(updatedToy);
         handleUpdateToy(updatedToy, _id);
-
-        // fetch(`http://localhost:5000/toys/${_id}`, {
-        //     method: 'PUT',
-        //     headers: {
-        //         'content-type': 'application/json'
-        //     },
-        //     body: JSON.stringify(updatedToy)
-        // })
-        //     .then(res => res.json())
-        //     .then(data => {
-        //         console.log(data);
-        //         if (data.modifiedCount > 0) {
-        //             Swal.fire({
-        //                 title: 'Success!',
-        //                 text: 'Toy Updated Successfully',
-        //                 icon: 'success',
-        //                 confirmButtonText: 'OK'
-        //             });
-        //         }
-        //     });
     };
 
     return (

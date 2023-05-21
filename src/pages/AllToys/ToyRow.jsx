@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom';
+import { Rating } from '@smastrom/react-rating';
+import '@smastrom/react-rating/style.css';
 
 const ToyRow = ({ toy, index }) => {
-    const { _id, sellerName, photo, toyName, subCategory, price, quantity } = toy;
+    const { _id, sellerName, photo, toyName, subCategory, rating, price, quantity } = toy;
 
     return (
         <tr className="hover">
@@ -16,6 +18,7 @@ const ToyRow = ({ toy, index }) => {
             </td>
             <td>{toyName}</td>
             <td className="text-center">{subCategory}</td>
+            <td><Rating style={{ maxWidth: 100 }} value={rating} readOnly /></td>
             <td>${price}</td>
             <td className="text-center">{quantity}</td>
             <td>

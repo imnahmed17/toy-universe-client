@@ -12,8 +12,8 @@ const LocateUs = () => {
     });
 
     return (
-        <div className='mt-10 flex flex-col-reverse lg:flex-row'>
-            <div className='w-3/5'>
+        <div className='mt-10 flex flex-col-reverse lg:flex-row gap-6'>
+            <div className='lg:w-3/5'>
                 <MapContainer 
                     center={[23.76409424382421, 90.41380841837086]}   
                     zoom={13} 
@@ -29,7 +29,7 @@ const LocateUs = () => {
                     <RoutingControl />
                 </MapContainer>
             </div>
-            <div className='w-2/5'>
+            <div className='lg:w-2/5'>
                 <h2 className='text-center text-3xl lg:text-start font-semibold mb-2 text-[#800080]'>Locate Us</h2>
                 <p className='text-justify mb-4'>
                     We are located at Dhaka, Bangladesh, and we&apos;d love for you to come visit us. To get to our store, you can use the map below to see our exact location. If you&apos;re driving, we have parking spaces available for our customers. And if you&apos;re taking public transportation, we&apos;re conveniently located near the Rampura Bridge.

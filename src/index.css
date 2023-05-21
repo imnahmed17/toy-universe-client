@@ -25,3 +25,7 @@
 .slick-arrow {
     filter: invert(1);
 }
+
+.leaflet-container {
+    height: 55vh;
+}

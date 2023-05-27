@@ -8,7 +8,7 @@ const ToyRow = ({ toy, index }) => {
     return (
         <tr className="hover">
             <th>{index+1}</th>
-            <td className="text-center">{sellerName}</td>
+            <td className="text-center">{sellerName.substring(0, 16)}</td>
             <td>
                 <div className="avatar">
                     <div className="rounded w-16 h-[117px]">

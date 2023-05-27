@@ -1,4 +1,4 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet, ScrollRestoration } from 'react-router-dom';
 import NavBar from './pages/Shared/NavBar';
 import Footer from './pages/Shared/Footer';
 import AOS from 'aos';
@@ -15,6 +15,7 @@ function App() {
       <NavBar />
       <Outlet />
       <Footer />
+      <ScrollRestoration />
     </div>
   );
 }

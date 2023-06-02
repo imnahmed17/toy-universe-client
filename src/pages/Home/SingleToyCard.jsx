@@ -12,7 +12,9 @@ const SingleToyCard = ({ data }) => {
             <div className="card-body">
                 <h3 className="card-title">{toyName}</h3>
                 <p className="text-orange-600">${price}</p>
-                <p><Rating style={{ maxWidth: 100 }} value={rating} readOnly /></p>
+                <div className='mb-2'>
+                    <Rating style={{ maxWidth: 100 }} value={rating} readOnly />
+                </div>
                 <div className="card-actions">
                     <Link to={`/toy/${_id}`}>
                         <button className="btn btn-active btn-ghost">View Details</button>

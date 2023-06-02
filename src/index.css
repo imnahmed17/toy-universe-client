@@ -29,8 +29,3 @@
 .leaflet-container {
     height: 55vh;
 }
-
-
-.pagination .selected{
-    background-color: #FF9900;
-}

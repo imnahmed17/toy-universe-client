@@ -30,7 +30,8 @@ const router = createBrowserRouter([
       },
       {
         path: 'all-toys',
-        element: <AllToys />
+        element: <AllToys />,
+        loader: () => fetch('https://toy-universe-server-lake.vercel.app/totalToys')
       },
       {
         path: 'my-toys',

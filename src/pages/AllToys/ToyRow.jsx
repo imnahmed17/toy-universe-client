@@ -3,12 +3,12 @@ import { Rating } from '@smastrom/react-rating';
 import '@smastrom/react-rating/style.css';
 
 const ToyRow = ({ toy, index }) => {
-    const { _id, sellerName, photo, toyName, subCategory, rating, price, quantity } = toy;
+    const { _id, sellerName, email, photo, toyName, subCategory, rating, price, quantity } = toy;
 
     return (
         <tr className="hover">
             <th>{index+1}</th>
-            <td className="text-center">{sellerName.substring(0, 16)}</td>
+            <td className="text-center">{sellerName.substring(0, 16)} <br /> <small>{email}</small></td>
             <td>
                 <div className="avatar">
                     <div className="rounded w-16 h-[117px]">

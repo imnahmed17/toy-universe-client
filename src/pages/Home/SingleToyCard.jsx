@@ -11,7 +11,7 @@ const SingleToyCard = ({ data }) => {
             </figure>
             <div className="card-body">
                 <h3 className="card-title">{toyName}</h3>
-                <p>${price}</p>
+                <p className="text-orange-600">${price}</p>
                 <p><Rating style={{ maxWidth: 100 }} value={rating} readOnly /></p>
                 <div className="card-actions">
                     <Link to={`/toy/${_id}`}>

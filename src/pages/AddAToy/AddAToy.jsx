@@ -76,7 +76,11 @@ const AddAToy = () => {
                         <label className="label">
                             <span className="label-text">Sub Category</span>
                         </label>
-                        <input type="text" name="subCategory" placeholder='marvel, dc etc.' className="input input-bordered" required />
+                        <select name="subCategory" className="select select-bordered" required>
+                            <option value="dc">DC</option>
+                            <option value="avengers">Avengers</option>
+                            <option value="guardians_of_the_galaxy">Guardians of the Galaxy</option>
+                        </select>
                     </div>
                     <div className="form-control">
                         <label className="label">

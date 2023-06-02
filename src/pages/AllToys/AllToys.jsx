@@ -1,10 +1,18 @@
 import { useEffect, useState } from 'react';
+import { useLoaderData } from 'react-router-dom';
 import ToyRow from './ToyRow';
 import useTitle from '../../hooks/useTitle';
+import './AllToys.css';
 
 const AllToys = () => {
     const [toys, setToys] = useState([]);
+    const { totalToys } = useLoaderData();
+    const [currentPage, setCurrentPage] = useState(0);
     useTitle("All Toys");
+
+    const itemsPerPage = 5;
+    const totalPages = Math.ceil(totalToys / itemsPerPage);
+    const pageNumbers = [...Array(totalPages).keys()];
 
     const handleSearch = (event) => {
         event.preventDefault();
@@ -17,10 +25,14 @@ const AllToys = () => {
     }; 
 
     useEffect(() => {
-        fetch("https://toy-universe-server-lake.vercel.app/toys")
-            .then(res => res.json())
-            .then(data => setToys(data));
-    }, []);
+        async function fetchData() {
+            const response = await fetch(`https://toy-universe-server-lake.vercel.app/toys?page=${currentPage}&limit=${itemsPerPage}`);
+            const data = await response.json();
+            setToys(data);
+        }
+
+        fetchData();
+    }, [currentPage, itemsPerPage]);
 
     return (
         <div>
@@ -38,7 +50,7 @@ const AllToys = () => {
                     <thead>
                         <tr>
                             <th></th>
-                            <th className="text-center">Seller</th>
+                            <th className="text-center">Seller Info</th>
                             <th className="text-center">Image</th>
                             <th>Toy Name</th>
                             <th className='text-center'>Sub Category</th>
@@ -58,6 +70,15 @@ const AllToys = () => {
                         }
                     </tbody>
                 </table>
+                <div className="btn-group pagination">
+                    {
+                        pageNumbers.map(number => <button
+                            key={number}
+                            className={currentPage === number ? 'selected btn btn-sm border-0' : 'btn btn-sm border-0'}
+                            onClick={() => setCurrentPage(number)}
+                        >{number + 1}</button>)
+                    }
+                </div>
             </div>
         </div>
     );
